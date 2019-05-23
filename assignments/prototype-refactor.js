@@ -36,11 +36,8 @@ class GameObject{
     return `${this.name} took damage`;
   }
 }
-  
- 
-  
-  
-  
+
+
   class Humanoid extends CharacterStats{
       constructor(humanThing){
         super(humanThing);
