@@ -15,43 +15,46 @@ Prototype Refactor
 
 
 
-function GameObject(objectThing){
+class GameObject{
+    constructor(objectThing){
     this.createdAt = objectThing.createdAt;
     this.name = objectThing.name;
     this.dimensions = objectThing.dimensions;
-  }
-  
-  GameObject.prototype.destroy = function(){
+  };
+  destroy(){
     return `${this.name} was removed from the game.`;
-  }
-  
+  };
+}
 
   
-  function CharacterStats(statThing){
-    GameObject.call(this, statThing);
-    this.healthPoints = statThing.healthPoints;
+  class CharacterStats extends GameObject{
+      constructor(statThing){
+        super(statThing);
+        this.healthPoints = statThing.healthPoints;
   }
-  
-  CharacterStats.prototype = Object.create(GameObject.prototype)
-  
-  CharacterStats.prototype.takeDamage = function(){
+  takeDamage(){
     return `${this.name} took damage`;
   }
+}
+  
+ 
   
   
   
-  function Humanoid(humanThing){
-    this.team = humanThing.team;
-    this.weapons = humanThing.weapons;
-    this.language = humanThing.language;
-    CharacterStats.call(this, humanThing)
-  }
-  
-  Humanoid.prototype = Object.create(CharacterStats.prototype);
-  
-  Humanoid.prototype.greet = function(){
+  class Humanoid extends CharacterStats{
+      constructor(humanThing){
+        super(humanThing);
+        this.team = humanThing.team;
+        this.weapons = humanThing.weapons;
+        this.language = humanThing.language;
+  }  
+  greet(){
     return `${this.name} offers a greeting in ${this.language}.`;
   }
+}
+
+
+  
 
 
 
@@ -124,7 +127,7 @@ function GameObject(objectThing){
 
 
 
-    
+
     console.log(mage.createdAt); // Today's date
     console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
     console.log(swordsman.healthPoints); // 15
