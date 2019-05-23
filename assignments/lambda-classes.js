@@ -36,12 +36,46 @@ class Instructor extends Person{
 
 // Student================================================================
 
+class Student extends Person{
+    constructor(StudentObj){
+        super(StudentObj);
+        this.studentBack = StudentObj.previousBackground;
+        this.studentClass = StudentObj.className;
+        this.studentSubject = StudentObj.favSubjects;
+    };
 
+    listsSubjects(){
+        console.log(studentSubject);
+    };
+
+    PRAssignment(subject){
+        console.log(`${StudentObj.name} has submitted a PR for ${subject}.`);
+    }
+
+    sprintChallenge(subject){
+        console.log(`${StudentObj.name} has begun a Sprint Challenge for ${subject}.`);
+    }
+}
 
 
 // Project Manager =======================================================
 
+class ProjectManager extends Instructor{
+    constructor(PmObj){
+        super(PmObj);
+        this.pmClass = PmObj.gradeClassName;
+        this.pmInst = PmObj.favInstructor;
+    }
 
+    standUp(channel){
+        console.log(`${PmObj.name} announces to channel ${channel}, high time for stand up!`);
+    }
+
+    debugsCode(student, subject){
+        console.log(`${PmObj.name} debugs ${student.name}'s code on ${subject}.`)
+    };
+
+}
 
 
 // CONSTS ================================================================
